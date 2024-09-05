@@ -5,6 +5,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\MessageController;
+
 
 
 Route::get('/', function () {
@@ -25,7 +28,12 @@ Route::get('categories', [CategoryController::class, 'index'])->name('categories
 
 
 //Admin => Testimonials
-
+Route::get('testimonials', [TestimonialController::class, 'index'])->name('testimonials.index');
 
 
 //Admin => Messages
+Route::get('messages', [MessageController::class, 'index'])->name('messages.index');
+
+
+
+
