@@ -9,9 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../../public/assests/css/dataTables.dataTables.min.css">
-    <link rel="stylesheet" href="assests/css/main.min.css">
-    <link rel="stylesheet" href="assests/css/styles.css">
+    <link rel="stylesheet" href="../../assests/css/dataTables.dataTables.min.css">
+    <link rel="stylesheet" href="../../assests/css/main.min.css">
+    <link rel="stylesheet" href="../../assests/css/styles.css">
 </head>
 
 <body>
@@ -33,11 +33,11 @@
             <ul class="navbar-nav">
               <li class="nav-item dropdown dropdown-center user-dropdown">
                 <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="true">
-                  <img class="img-xs rounded-circle" src="../../public/assests/images/avatar-default.svg" alt="Profile image" />
+                  <img class="img-xs rounded-circle" src="../../assests/images/avatar-default.svg" alt="Profile image" />
                 </a>
                 <div class="dropdown-menu dropdown-center navbar-dropdown" aria-labelledby="UserDropdown">
                   <div class="dropdown-header text-center">
-                    <img class="img-md rounded-circle" src="../../public/assests/images/avatar-default.svg" alt="Profile image"
+                    <img class="img-md rounded-circle" src="../../assests/images/avatar-default.svg" alt="Profile image"
                       width="80" height="80" />
                     <p class="mb-1 mt-3 font-weight-semibold">Allen Moreno</p>
                     <p class="fw-light text-muted mb-0">allenmoreno@gmail.com</p>
@@ -144,12 +144,12 @@
                     <tbody>
                       @foreach($users as $user)
                         <tr>
-                            <th scope="row">{{$user['created_at']}}</th>
-                            <td>{{$user['first_name']}}</td>
-                            <td>{{$user['last_name']}}</td>
+                            <th scope="row">{{ \Carbon\Carbon::parse($user['created_time'])->format('d M Y') }}</th>
+                            <td>{{ $user['first_name'] . ' ' . $user['last_name'] }}</td>
+                            <td>{{$user['user_name']}}</td>
                             <td>{{$user['email']}}</td>
-                            <td>{{$user['active']}}</td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="edit_user.html"><img src="../../public/assests/images/edit-svgrepo-com.svg"></a></td>
+                            <td>{{ $user['active'] ? 'Yes' : 'No' }}</td>
+                            <td class="text-center"><a class="text-decoration-none text-dark" href="edit_user.html"><img src="../../assests/images/edit-svgrepo-com.svg"></a></td>
                         </tr>
                       @endforeach
                        
@@ -158,10 +158,10 @@
             </div>
         </div>
     </div>
-    <script src="../../public/assests/js/jquery.min.js"></script>
-    <script src="../../public/assests/js/bootstrap.bundle.min.js"></script>
-    <script src="../../public/assests/js/dataTables.min.js"></script>
-    <script src="../../public/assests/js/tables.js"></script>
+    <script src="../../assests/js/jquery.min.js"></script>
+    <script src="../../assests/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assests/js/dataTables.min.js"></script>
+    <script src="../../assests/js/tables.js"></script>
 </body>
 
 </html>

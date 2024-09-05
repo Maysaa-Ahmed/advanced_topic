@@ -135,7 +135,6 @@
                             <th scope="col">Title</th>
                             <th scope="col">Category</th>
                             <th scope="col">Content</th>
-                            <th scope="col">No. of views</th>
                             <th scope="col">Published</th>
                             <th scope="col">Trending</th>
                             <th scope="col">Edit</th>
@@ -143,78 +142,19 @@
                         </tr>
                     </thead>
                     <tbody>
+                      @foreach($topics as $topic)
                         <tr>
-                            <th scope="row">18 Jul 2024</th>
-                            <td><a class="text-decoration-none text-dark" href="topic_details.html">Machine learning</a>
+                            <th scope="row">{{ \Carbon\Carbon::parse($topic['created_time'])->format('d M Y') }}</th>
+                            <td><a class="text-decoration-none text-dark" href="topic_details.html">{{$topic['topic_name']}}</a>
                             </td>
-                            <td>Computer Science</td>
-                            <td>Lorem ipsum dolor sit amet consectetur...</td>
-                            <td>12</td>
-                            <td>YES</td>
-                            <td>NO</td>
+                            <td>{{$topic['topic_category']}}</td>
+                            <td>{{$topic['topic_content']}}</td>
+                            <td>{{ $topic['published'] ? 'Yes' : 'No' }}</td>
+                            <td>{{ $topic['trending'] ? 'Yes' : 'No' }}</td>
                             <td class="text-center"><a class="text-decoration-none text-dark" href="edit_topic.html"><img src="assests/images/edit-svgrepo-com.svg"></a></td>
                             <td class="text-center"><a class="text-decoration-none text-dark" href="#"><img src="assests/images/trash-can-svgrepo-com.svg"></a></td>
                         </tr>
-                        <tr>
-                            <th scope="row">18 Jul 2024</th>
-                            <td><a class="text-decoration-none text-dark" href="topic_details.html">Machine learning</a>
-                            </td>
-                            <td>Computer Science</td>
-                            <td>Lorem ipsum dolor sit amet consectetur...</td>
-                            <td>12</td>
-                            <td>YES</td>
-                            <td>NO</td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="edit_topic.html"><img src="assests/images/edit-svgrepo-com.svg"></a></td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="#"><img src="assests/images/trash-can-svgrepo-com.svg"></a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">18 Jul 2024</th>
-                            <td><a class="text-decoration-none text-dark" href="topic_details.html">Machine learning</a>
-                            </td>
-                            <td>Computer Science</td>
-                            <td>Lorem ipsum dolor sit amet consectetur...</td>
-                            <td>12</td>
-                            <td>YES</td>
-                            <td>NO</td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="edit_topic.html"><img src="assests/images/edit-svgrepo-com.svg"></a></td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="#"><img src="assests/images/trash-can-svgrepo-com.svg"></a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">18 May 2024</th>
-                            <td><a class="text-decoration-none text-dark" href="topic_details.html">Machine learning</a>
-                            </td>
-                            <td>Computer Science</td>
-                            <td>Lorem ipsum dolor sit amet consectetur...</td>
-                            <td>12</td>
-                            <td>YES</td>
-                            <td>NO</td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="edit_topic.html"><img src="assests/images/edit-svgrepo-com.svg"></a></td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="#"><img src="assests/images/trash-can-svgrepo-com.svg"></a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">10 Oct 2024</th>
-                            <td><a class="text-decoration-none text-dark" href="topic_details.html">Deep learning</a>
-                            </td>
-                            <td>Computer Science</td>
-                            <td>Lorem ipsum dolor sit amet consectetur...</td>
-                            <td>12</td>
-                            <td>YES</td>
-                            <td>YES</td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="edit_topic.html"><img src="assests/images/edit-svgrepo-com.svg"></a></td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="#"><img src="assests/images/trash-can-svgrepo-com.svg"></a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">18 Dec 2024</th>
-                            <td><a class="text-decoration-none text-dark" href="topic_details.html">Social Media
-                                    Marketing</a></td>
-                            <td>Public Relations</td>
-                            <td>Lorem ipsum dolor sit amet consectetur...</td>
-                            <td>12</td>
-                            <td>YES</td>
-                            <td>YES</td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="edit_topic.html"><img src="assests/images/edit-svgrepo-com.svg"></a></td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="#"><img src="assests/images/trash-can-svgrepo-com.svg"></a></td>
-                        </tr>
+                      @endforeach
                     </tbody>
                 </table>
             </div>

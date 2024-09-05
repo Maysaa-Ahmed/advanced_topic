@@ -138,30 +138,14 @@
                         </tr>
                     </thead>
                     <tbody>
+                      @foreach($categories as $category)
                         <tr>
-                            <th scope="row">18 Jul 2024</th>
-                            <td>Computer Science</td>
+                            <th scope="row">{{ \Carbon\Carbon::parse($category['created_time'])->format('d M Y') }}</th>
+                            <td>{{$category['category_name']}}</td>
                             <td class="text-center"><a class="text-decoration-none text-dark" href="edit_category.html"><img src="assests/images/edit-svgrepo-com.svg"></a></td>
                             <td class="text-center"><a class="text-decoration-none text-dark" href="#"><img src="assests/images/trash-can-svgrepo-com.svg"></a></td>
                         </tr>
-                        <tr>
-                            <th scope="row">18 Dec 2024</th>
-                            <td>Public Relations</td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="edit_category.html"><img src="assests/images/edit-svgrepo-com.svg"></a></td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="#"><img src="assests/images/trash-can-svgrepo-com.svg"></a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">18 Dec 2024</th>
-                            <td>Marketing</td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="edit_category.html"><img src="assests/images/edit-svgrepo-com.svg"></a></td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="#"><img src="assests/images/trash-can-svgrepo-com.svg"></a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">18 Dec 2024</th>
-                            <td>Operating Systems</td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="edit_category.html"><img src="assests/images/edit-svgrepo-com.svg"></a></td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="#"><img src="assests/images/trash-can-svgrepo-com.svg"></a></td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
