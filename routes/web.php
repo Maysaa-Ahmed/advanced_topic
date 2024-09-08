@@ -36,7 +36,8 @@ Route::Post('categories', [CategoryController::class, 'store'])->name('categorie
 
 //Admin => Testimonials
 Route::get('testimonials', [TestimonialController::class, 'index'])->name('testimonials.index');
-
+Route::get('testimonials/create', [TestimonialController::class, 'create'])->name('testimonials.create');
+Route::Post('testimonials', [TestimonialController::class, 'store'])->name('testimonials.store');
 
 //Admin => Messages
 Route::get('messages', [MessageController::class, 'index'])->name('messages.index');

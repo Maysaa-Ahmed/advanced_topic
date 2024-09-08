@@ -9,9 +9,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="assests/css/dataTables.dataTables.min.css">
-  <link rel="stylesheet" href="assests/css/main.min.css">
-  <link rel="stylesheet" href="assests/css/styles.css">
+  <link rel="stylesheet" href="../../assests/css/dataTables.dataTables.min.css">
+  <link rel="stylesheet" href="../../assests/css/main.min.css">
+  <link rel="stylesheet" href="../../assests/css/styles.css">
 </head>
 
 <body>
@@ -33,11 +33,11 @@
             <ul class="navbar-nav">
               <li class="nav-item dropdown dropdown-center user-dropdown">
                 <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="true">
-                  <img class="img-xs rounded-circle" src="assests/images/avatar-default.svg" alt="Profile image" />
+                  <img class="img-xs rounded-circle" src="../../assests/images/avatar-default.svg" alt="Profile image" />
                 </a>
                 <div class="dropdown-menu dropdown-center navbar-dropdown" aria-labelledby="UserDropdown">
                   <div class="dropdown-header text-center">
-                    <img class="img-md rounded-circle" src="assests/images/avatar-default.svg" alt="Profile image"
+                    <img class="img-md rounded-circle" src="../../assests/images/avatar-default.svg" alt="Profile image"
                       width="80" height="80" />
                     <p class="mb-1 mt-3 font-weight-semibold">Allen Moreno</p>
                     <p class="fw-light text-muted mb-0">allenmoreno@gmail.com</p>
@@ -125,30 +125,31 @@
   <div class="container my-5">
     <div class="mx-2">
       <h2 class="fw-bold fs-2 mb-5 pb-2">Add Testimonial</h2>
-      <form action="" method="" class="px-md-5">
+      <form action="{{route('testimonials.store')}}" method="POST" class="px-md-5" enctype="multipart/form-data">
+        @csrf           
         <div class="form-group mb-3 row">
           <label for="" class="form-label col-md-2 fw-bold text-md-end">Name:</label>
           <div class="col-md-10">
-            <input type="text" placeholder="e.g. Jhon Doe" class="form-control py-2" />
+            <input name="name" type="text" placeholder="e.g. Jhon Doe" class="form-control py-2" />
           </div>
         </div>
         <div class="form-group mb-3 row">
           <label for="" class="form-label col-md-2 fw-bold text-md-end">Content:</label>
           <div class="col-md-10">
-            <textarea name="" id="" rows="5" class="form-control"></textarea>
+            <textarea name="content" id="" rows="5" class="form-control"></textarea>
           </div>
         </div>
         <div class="form-group mb-3 row">
           <label for="" class="form-label col-md-2 fw-bold text-md-end">Published:</label>
           <div class="col-md-10">
-            <input type="checkbox" class="form-check-input" style="padding: 0.7rem;" />
+            <input name="published" type="checkbox" class="form-check-input" style="padding: 0.7rem;" />
           </div>
         </div>
         <hr>
         <div class="form-group mb-3 row">
           <label for="" class="form-label col-md-2 fw-bold text-md-end">Image:</label>
           <div class="col-md-10">
-            <input type="file" class="form-control" style="padding: 0.7rem;" />
+            <input name="image" type="file" class="form-control" style="padding: 0.7rem;" />
           </div>
         </div>
         <div class="text-md-end">
@@ -160,10 +161,10 @@
     </div>
   </div>
   </main>
-  <script src="assests/js/jquery.min.js"></script>
-  <script src="assests/js/bootstrap.bundle.min.js"></script>
-  <script src="assests/js/dataTables.min.js"></script>
-  <script src="assests/js/tables.js"></script>
+  <script src="../../assests/js/jquery.min.js"></script>
+  <script src="../../assests/js/bootstrap.bundle.min.js"></script>
+  <script src="../../assests/js/dataTables.min.js"></script>
+  <script src="../../assests/js/tables.js"></script>
 </body>
 
 </html>

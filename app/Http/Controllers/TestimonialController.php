@@ -23,7 +23,7 @@ class TestimonialController extends Controller
      */
     public function create()
     {
-        //
+        return view('add_testimonial');
     }
 
     /**
@@ -31,8 +31,24 @@ class TestimonialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (isset($request->published)) {
+            $pub = true;
+        } else {
+            $pub = false;
+        }
+
+        $data = [
+            'name' => $request->name,
+            'content' => $request->content,
+            'published' => $pub,
+            'image'=> $request->image,
+        ];
+
+        $data['image'] = $this->uploadFile($request->image, '../../../public/assets/images');
+        Testimonial::create($data);
+        return redirect()->route('testimonials.index');
     }
+    
 
     /**
      * Display the specified resource.
