@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamp('created_time')->useCurrent();
             $table->string('category_name');
+            $table->timestamps();
         });
     }
 

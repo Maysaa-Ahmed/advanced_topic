@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Traits\Common;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -23,7 +24,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('add_user');
     }
 
     /**
@@ -31,7 +32,29 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        if (isset($request->active)) {
+            $isActive = true;
+        } else {
+            $isActive = false;
+        }
+
+        $data = $request->validate([
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'user_name' => 'required|string',
+            'active' => $isActive,
+            'email' => 'required|string|email|max:255',
+            'password' => 'required|string|min:8',
+        ]);
+
+        
+        $data['image'] = $this->uploadFile($request->image, 'assets/images');
+
+        $data['password'] = Hash::make($request->password);
+        
+        User::create($data);
+        return redirect()->route('users.index');
     }
 
     /**

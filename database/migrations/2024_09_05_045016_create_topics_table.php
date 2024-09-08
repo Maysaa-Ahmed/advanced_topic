@@ -19,6 +19,8 @@ return new class extends Migration
             $table->text('topic_content');
             $table->boolean('published');
             $table->boolean('trending');
+            $table->string('image');
+            $table->timestamps();
         });
     }
 

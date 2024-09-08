@@ -23,7 +23,7 @@ class TopicController extends Controller
      */
     public function create()
     {
-        //
+        return view('add_topic');
     }
 
     /**
@@ -31,7 +31,30 @@ class TopicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (isset($request->trending)) {
+            $trend = true;
+        } else {
+            $trend = false;
+        }
+
+        if (isset($request->published)) {
+            $pub = true;
+        } else {
+            $pub = false;
+        }
+
+        $data = [
+            'topic_name' => $request->topic_name,
+            'topic_category' => $request->topic_category,
+            'topic_content' => $request->topic_content,
+            'trending' => $trend,
+            'published' => $pub,
+            'image'=> $request->image,
+        ];
+
+        $data['image'] = $this->uploadFile($request->image, '../../../public/assets/images');
+        Topic::create($data);
+        return redirect()->route('topics.index');
     }
 
     /**
