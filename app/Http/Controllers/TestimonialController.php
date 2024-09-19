@@ -63,7 +63,8 @@ class TestimonialController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $testimonial = Testimonial::findOrFail($id);
+        return view('edit_testimonial', compact('testimonial'));
     }
 
     /**
@@ -71,7 +72,15 @@ class TestimonialController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = [
+            'name' => $request->name,
+            'content' => $request->content,
+            'published' => isset( $request->published),
+            'image' => $request->image,
+        ];
+
+        Testimonial::where('id',$id)->update($data);
+        return redirect()->route('testimonials.index');
     }
 
     /**
@@ -79,6 +88,8 @@ class TestimonialController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Testimonial::where('id', $id)->delete();
+       
+        return redirect()->route('testimonials.index');
     }
 }

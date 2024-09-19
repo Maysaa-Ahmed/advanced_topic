@@ -151,8 +151,10 @@
                             <td>{{$topic['topic_content']}}</td>
                             <td>{{ $topic['published'] ? 'Yes' : 'No' }}</td>
                             <td>{{ $topic['trending'] ? 'Yes' : 'No' }}</td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="edit_topic.html"><img src="assests/images/edit-svgrepo-com.svg"></a></td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="#"><img src="assests/images/trash-can-svgrepo-com.svg"></a></td>
+                            <td class="text-center"><a class="text-decoration-none text-dark" href="{{ route('topics.edit', $topic['id']) }}"><img src="assests/images/edit-svgrepo-com.svg"></a></td>
+                            <td class="text-center">
+                              <a class="text-decoration-none text-dark" href="{{route('topics.destroy', $topic['id'])}}" onclick="confirm('Are you sure you want to delete?')"><img src="assests/images/trash-can-svgrepo-com.svg"></a>
+                            </td>
                         </tr>
                       @endforeach
                     </tbody>

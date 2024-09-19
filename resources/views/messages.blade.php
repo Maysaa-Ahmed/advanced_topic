@@ -142,7 +142,7 @@
                         <th scope="row">{{ \Carbon\Carbon::parse($message['created_time'])->format('d M Y') }}</th>
                             <td><a href="message_details.html" class="text-decoration-none text-dark">{{$message['message']}}</a></td>
                             <td>{{$message['sender']}}</td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="#"><img src="assests/images/trash-can-svgrepo-com.svg"></a></td>
+                            <td class="text-center"><a class="text-decoration-none text-dark" href="{{route('messages.destroy', $message['id'])}}" onclick="confirm('Are you sure you want to delete?')"><img src="assests/images/trash-can-svgrepo-com.svg"></a></td>
                         </tr>
                       @endforeach
                     </tbody>

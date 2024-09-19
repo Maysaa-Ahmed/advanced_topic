@@ -146,8 +146,8 @@
                             <td>{{$testimonial['name']}}</td>
                             <td>{{$testimonial['content']}}</td>
                             <td>{{ $testimonial['published'] ? 'Yes' : 'No' }}</td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="edit_testimonial.html"><img src="assests/images/edit-svgrepo-com.svg"></a></td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="#"><img src="assests/images/trash-can-svgrepo-com.svg"></a></td>
+                            <td class="text-center"><a class="text-decoration-none text-dark" href="{{ route('testimonials.edit', $testimonial['id']) }}"><img src="assests/images/edit-svgrepo-com.svg"></a></td>
+                            <td class="text-center"><a class="text-decoration-none text-dark" href="{{route('testimonials.destroy', $testimonial['id'])}}" onclick="confirm('Are you sure you want to delete?')"><img src="assests/images/trash-can-svgrepo-com.svg"></a></td>
                         </tr>
                       @endforeach
                     </tbody>

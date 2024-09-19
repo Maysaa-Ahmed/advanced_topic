@@ -142,8 +142,8 @@
                         <tr>
                             <th scope="row">{{ \Carbon\Carbon::parse($category['created_time'])->format('d M Y') }}</th>
                             <td>{{$category['category_name']}}</td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="edit_category.html"><img src="assests/images/edit-svgrepo-com.svg"></a></td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="#"><img src="assests/images/trash-can-svgrepo-com.svg"></a></td>
+                            <td class="text-center"><a class="text-decoration-none text-dark" href="{{ route('categories.edit', $category['id']) }}"><img src="assests/images/edit-svgrepo-com.svg"></a></td>
+                            <td class="text-center"><a class="text-decoration-none text-dark"  href="{{route('categories.destroy', $category['id'])}}" onclick="confirm('Are you sure you want to delete?')"><img src="assests/images/trash-can-svgrepo-com.svg"></a></td>
                         </tr>
                         @endforeach
                     </tbody>

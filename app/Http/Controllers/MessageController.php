@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Message;
 use App\Traits\Common;
 use Illuminate\Http\Request;
+//use Illuminate\Mail\Message;
 
 class MessageController extends Controller
 {
@@ -64,6 +65,8 @@ class MessageController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Message::where('id', $id)->delete();
+       
+        return redirect()->route('messages.index');
     }
 }

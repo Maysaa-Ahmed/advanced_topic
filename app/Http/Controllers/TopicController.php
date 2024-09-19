@@ -70,7 +70,8 @@ class TopicController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $topic = Topic::findOrFail($id);
+        return view('edit_topic', compact('topic'));
     }
 
     /**
@@ -78,7 +79,17 @@ class TopicController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = [
+            'topic_name' => $request->topic_name,
+            'topic_category' => $request->topic_category,
+            'topic_content' => $request->topic_content,
+            'published' => isset( $request->published),
+            'trending' => isset( $request->trending),
+            'image' => $request->image,
+        ];
+
+        Topic::where('id',$id)->update($data);
+        return redirect()->route('topics.index');
     }
 
     /**
@@ -86,6 +97,8 @@ class TopicController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Topic::where('id', $id)->delete();
+       
+        return redirect()->route('topics.index');
     }
 }
