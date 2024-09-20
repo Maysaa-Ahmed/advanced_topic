@@ -7,6 +7,9 @@ use App\Http\Controllers\TopicController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+
 
 
 
@@ -56,3 +59,21 @@ Route::get('messages/{id}/delete', [MessageController::class, 'destroy'])->name(
 
 
 
+//Admin => Login
+Route::get('login', [LoginController::class, 'showLoginForm'])->name('login.form');
+Route::post('login', [LoginController::class, 'login'])->name('login');
+
+
+//Admin => Register
+Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('register', [RegisterController::class, 'register']);
+
+
+
+
+
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
