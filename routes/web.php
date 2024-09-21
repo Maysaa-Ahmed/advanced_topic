@@ -12,10 +12,9 @@ use App\Http\Controllers\Auth\RegisterController;
 
 
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
 // Admin => Users
@@ -33,7 +32,7 @@ Route::Post('topics', [TopicController::class, 'store'])->name('topics.store');
 Route::get('topics/{id}/delete', [TopicController::class, 'destroy'])->name('topics.destroy');
 Route::get('topics/{id}/edit', [TopicController::class, 'edit'])->name('topics.edit');
 Route::put('topics/{id}', [TopicController::class, 'update'])->name('topics.update');
-
+Route::get('topics/{id}/detail', [TopicController::class, 'detail'])->name('topic.detail');
 
 //Admin => Categories
 Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
@@ -56,6 +55,7 @@ Route::put('testimonials/{id}', [TestimonialController::class, 'update'])->name(
 //Admin => Messages
 Route::get('messages', [MessageController::class, 'index'])->name('messages.index');
 Route::get('messages/{id}/delete', [MessageController::class, 'destroy'])->name('messages.destroy');
+Route::get('messages/{id}/detail', [MessageController::class, 'detail'])->name('messages.detail');
 
 
 
@@ -69,8 +69,10 @@ Route::get('register', [RegisterController::class, 'showRegistrationForm'])->nam
 Route::post('register', [RegisterController::class, 'register']);
 
 
+/////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+//Public => Index
 
 
 

@@ -52,7 +52,7 @@ class TopicController extends Controller
             'image'=> $request->image,
         ];
 
-        $data['image'] = $this->uploadFile($request->image, '../../../public/assets/images');
+        $data['image'] = $this->uploadFile($request->image, 'assets/images');
         Topic::create($data);
         return redirect()->route('topics.index');
     }
@@ -88,6 +88,11 @@ class TopicController extends Controller
             'image' => $request->image,
         ];
 
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->getClientOriginalExtension();
+            $request->image->storeAs('images', $imageName, 'public');
+            $data['image'] = $imageName;
+        }
         Topic::where('id',$id)->update($data);
         return redirect()->route('topics.index');
     }
@@ -100,5 +105,11 @@ class TopicController extends Controller
         Topic::where('id', $id)->delete();
        
         return redirect()->route('topics.index');
+    }
+
+    public function detail(string $id)
+    {
+        $topic = Topic::findOrFail($id);
+        return view('topic_details', compact('topic'));
     }
 }

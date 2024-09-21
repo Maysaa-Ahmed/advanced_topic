@@ -2,22 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Message;
-use App\Traits\Common;
 use Illuminate\Http\Request;
-//use Illuminate\Mail\Message;
+use App\Models\Index;
 
-class MessageController extends Controller
+
+class IndexController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    use Common;
     public function index()
     {
-        $messages = Message::get();
+        $indexs = Index::get();
 
-        return view('messages', compact('messages'));
+        return view('index', compact('indexs'));
     }
 
     /**
@@ -65,14 +63,6 @@ class MessageController extends Controller
      */
     public function destroy(string $id)
     {
-        Message::where('id', $id)->delete();
-       
-        return redirect()->route('messages.index');
-    }
-
-    public function detail(string $id)
-    {
-        $message = Message::findOrFail($id);
-        return view('message_details', compact('message'));
+        //
     }
 }
