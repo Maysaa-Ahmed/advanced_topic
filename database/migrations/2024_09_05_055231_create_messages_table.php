@@ -16,6 +16,9 @@ return new class extends Migration
             $table->timestamp('created_time')->useCurrent();
             $table->text('message');
             $table->string('sender');
+            $table->string('email');
+            $table->string('subject');
+            $table->timestamps();
         });
     }
 

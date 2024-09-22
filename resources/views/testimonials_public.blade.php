@@ -16,11 +16,11 @@
 
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">
                         
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../assests/css/bootstrap.min.css" rel="stylesheet">
 
-        <link href="css/bootstrap-icons.css" rel="stylesheet">
+        <link href="../../assests/css/bootstrap-icons.css" rel="stylesheet">
 
-        <link href="css/templatemo-topic-listing.css" rel="stylesheet">
+        <link href="../../assests/css/templatemo-topic-listing.css" rel="stylesheet">
 <!--
 
 TemplateMo 590 topic listing
@@ -34,46 +34,7 @@ https://templatemo.com/tm-590-topic-listing
 
         <main>
 
-            <nav class="navbar navbar-expand-lg">
-                <div class="container">
-                    <a class="navbar-brand" href="index.html">
-                        <i class="bi-back"></i>
-                        <span>Topic</span>
-                    </a>
-
-                    <div class="d-lg-none ms-auto me-4">
-                        <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
-                    </div>
-    
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-    
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav ms-lg-5 me-lg-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="index.html">Home</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="topics-listing.html">Topics Listing</a>
-                            </li>
-    
-                            <li class="nav-item">
-                                <a class="nav-link" href="contact.html">Contact Us</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link active" href="testimonials.html">Our Client Says</a>
-                            </li>
-                        </ul>
-
-                        <div class="d-none d-lg-block">
-                            <a href="../admin/register.html" class="navbar-icon bi-person smoothscroll"></a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
+            @include('layouts.includes.short_menu')
 
 
             <header class="site-header d-flex flex-column justify-content-center align-items-center">
@@ -245,10 +206,10 @@ https://templatemo.com/tm-590-topic-listing
         </footer>
 
         <!-- JAVASCRIPT FILES -->
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.bundle.min.js"></script>
-        <script src="js/jquery.sticky.js"></script>
-        <script src="js/custom.js"></script>
+        <script src="../../assests/js/jquery.min.js"></script>
+        <script src="../../assests/js/bootstrap.bundle.min.js"></script>
+        <script src="../../assests/js/jquery.sticky.js"></script>
+        <script src="../../assests/js/custom.js"></script>
 
     </body>
 </html>

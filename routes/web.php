@@ -69,10 +69,28 @@ Route::get('register', [RegisterController::class, 'showRegistrationForm'])->nam
 Route::post('register', [RegisterController::class, 'register']);
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////
+ ////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 //Public => Index
+Route::get('homepage', [MessageController::class, 'viewHome'])->name('homepage.viewHome');
+
+
+
+//Public => contact
+Route::get('contact', [MessageController::class, 'viewContact'])->name('contact.viewContact');
+Route::post('contact', [MessageController::class, 'store'])->name('contact.store');
+
+
+//Public => Topic List
+Route::get('topiclist', [MessageController::class, 'viewTopicList'])->name('topiclist.viewTopicList');
+
+//Public => Our Clients Says
+Route::get('ourclients', [MessageController::class, 'viewOurClients'])->name('ourclients.viewOurClients');
+
+
+
 
 
 

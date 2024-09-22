@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Message;
 use App\Traits\Common;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+
 //use Illuminate\Mail\Message;
 
 class MessageController extends Controller
@@ -33,7 +35,25 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string',
+        ]);
+
+        // Store message in the database
+        $message = Message::create($data);
+
+        // Send email
+        Mail::send([], [], function ($mail) use ($data) {
+            $mail->to('maysaa.ahmed94@gmail.com') 
+                ->subject($data['subject'])
+                ->setBody('From: ' . $data['sender'] . '<br>Email: ' . $data['email'] . '<br>Message: ' . $data['message'], 'text/html');
+        });
+
+        return redirect()->back()->with('success', 'Your message has been sent and saved.');
+   
     }
 
     /**
@@ -74,5 +94,30 @@ class MessageController extends Controller
     {
         $message = Message::findOrFail($id);
         return view('message_details', compact('message'));
+    }
+
+    public function viewContact()
+    {
+        $contacts = Message::get();
+
+        return view('contact', compact('contacts'));
+    }
+    public function viewHome()
+    {
+        $home = Message::get();
+
+        return view('home_page', compact('home'));
+    }
+    public function viewTopicList()
+    {
+        $list = Message::get();
+
+        return view('topics-listing', compact('list'));
+    }
+    public function viewOurClients()
+    {
+        $client = Message::get();
+
+        return view('testimonials_public', compact('client'));
     }
 }

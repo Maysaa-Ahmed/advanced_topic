@@ -16,11 +16,11 @@
 
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">
                         
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../assests/css/bootstrap.min.css" rel="stylesheet">
 
-        <link href="css/bootstrap-icons.css" rel="stylesheet">
+        <link href="../../assests/css/bootstrap-icons.css" rel="stylesheet">
 
-        <link href="css/templatemo-topic-listing.css" rel="stylesheet">
+        <link href="../../assests/css/templatemo-topic-listing.css" rel="stylesheet">
 <!--
 
 TemplateMo 590 topic listing
@@ -33,49 +33,7 @@ https://templatemo.com/tm-590-topic-listing
     <body class="topics-listing-page" id="top">
 
         <main>
-
-            <nav class="navbar navbar-expand-lg">
-                <div class="container">
-                    <a class="navbar-brand" href="index.html">
-                        <i class="bi-back"></i>
-                        <span>Topic</span>
-                    </a>
-
-                    <div class="d-lg-none ms-auto me-4">
-                        <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
-                    </div>
-    
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-    
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav ms-lg-5 me-lg-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="index.html">Home</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="topics-listing.html">Topics Listing</a>
-                            </li>
-    
-                            <li class="nav-item">
-                                <a class="nav-link active" href="contact.html">Contact Us</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="testimonials.html">Our Client Says</a>
-                            </li>
-                        </ul>
-
-                        <div class="d-none d-lg-block">
-                            <a href="../admin/register.html" class="navbar-icon bi-person smoothscroll"></a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-
-
+        @include('layouts.includes.short_menu')
             <header class="site-header d-flex flex-column justify-content-center align-items-center">
                 <div class="container">
                     <div class="row align-items-center">
@@ -106,44 +64,40 @@ https://templatemo.com/tm-590-topic-listing
                         </div>
 
                         <div class="col-lg-6 col-12">
-                            <form action="#" method="post" class="custom-form contact-form" role="form">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-12">
-                                        <div class="form-floating">
-                                            <input type="text" name="name" id="name" class="form-control" placeholder="Name" required="">
-                                            
-                                            <label for="floatingInput">Name</label>
-                                        </div>
+                        <form action="{{ route('contact.store') }}" method="POST" class="custom-form contact-form" role="form">
+                            @csrf
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="form-floating">
+                                        <input type="text" name="sender" id="name" class="form-control" placeholder="Name" required>
+                                        <label for="floatingInput">Name</label>
                                     </div>
-
-                                    <div class="col-lg-6 col-md-6 col-12"> 
-                                        <div class="form-floating">
-                                            <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email address" required="">
-                                            
-                                            <label for="floatingInput">Email address</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-12 col-12">
-                                        <div class="form-floating">
-                                            <input type="text" name="subject" id="name" class="form-control" placeholder="Name" required="">
-                                            
-                                            <label for="floatingInput">Subject</label>
-                                        </div>
-
-                                        <div class="form-floating">
-                                            <textarea class="form-control" id="message" name="message" placeholder="Tell me about the project"></textarea>
-                                            
-                                            <label for="floatingTextarea">Tell me about the project</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-4 col-12 ms-auto">
-                                        <button type="submit" class="form-control">Submit</button>
-                                    </div>
-
                                 </div>
-                            </form>
+
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="form-floating">
+                                        <input type="email" name="email" id="email" class="form-control" placeholder="Email address" required>
+                                        <label for="floatingInput">Email address</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12 col-12">
+                                    <div class="form-floating">
+                                        <input type="text" name="subject" id="subject" class="form-control" placeholder="Subject" required>
+                                        <label for="floatingInput">Subject</label>
+                                    </div>
+
+                                    <div class="form-floating">
+                                        <textarea class="form-control" id="message" name="message" placeholder="Tell me about the project"></textarea>
+                                        <label for="floatingTextarea">Tell me about the project</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-12 ms-auto">
+                                    <button type="submit" class="form-control">Submit</button>
+                                </div>
+                            </div>
+                        </form>
                         </div>
 
                         <div class="col-lg-5 col-12 mx-auto mt-5 mt-lg-0">
@@ -232,10 +186,10 @@ https://templatemo.com/tm-590-topic-listing
         </footer>
 
         <!-- JAVASCRIPT FILES -->
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.bundle.min.js"></script>
-        <script src="js/jquery.sticky.js"></script>
-        <script src="js/custom.js"></script>
+        <script src="../../assests/js/jquery.min.js"></script>
+        <script src="../../assests/js/bootstrap.bundle.min.js"></script>
+        <script src="../../assests/js/jquery.sticky.js"></script>
+        <script src="../../assests/js/custom.js"></script>
 
     </body>
 </html>
