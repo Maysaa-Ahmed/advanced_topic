@@ -91,7 +91,8 @@ Route::get('topiclist', [MessageController::class, 'viewTopicList'])->name('topi
 //Public => Our Clients Says
 Route::get('ourclients', [MessageController::class, 'viewOurClients'])->name('ourclients.viewOurClients');
 
-
+//Public => Topics Detail page
+Route::get('topicdetail/{id}', [MessageController::class, 'viewTopicDetail'])->name('topicdetail.viewTopicDetail');
 
 
 

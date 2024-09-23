@@ -159,4 +159,11 @@ class MessageController extends Controller
         return view('testimonials_public', compact('client', 'testimonials'));
     }
 
+    //view Topic Detail page
+    public function viewTopicDetail($id)
+    {
+        $detail = Message::get();
+        $topic2 = Topic::findOrFail($id);
+        return view('topics-detail_public', compact('detail', 'topic2'));
+    }
 }
