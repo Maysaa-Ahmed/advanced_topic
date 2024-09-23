@@ -44,7 +44,7 @@ class TestimonialController extends Controller
             'image'=> $request->image,
         ];
 
-        $data['image'] = $this->uploadFile($request->image, '../../../public/assets/images');
+        $data['image'] = $this->uploadFile($request->image, 'assets/images');
         Testimonial::create($data);
         return redirect()->route('testimonials.index');
     }
@@ -76,8 +76,12 @@ class TestimonialController extends Controller
             'name' => $request->name,
             'content' => $request->content,
             'published' => isset( $request->published),
-            'image' => $request->image,
+            
         ];
+        
+        if ($request->hasFile('image')) {
+            $data['image'] = $this->uploadFile($request->image, 'assets/images');
+        }
 
         Testimonial::where('id',$id)->update($data);
         return redirect()->route('testimonials.index');
@@ -91,5 +95,15 @@ class TestimonialController extends Controller
         Testimonial::where('id', $id)->delete();
        
         return redirect()->route('testimonials.index');
+    }
+    public function getLatestTestimonials()
+    {
+        // Fetch the latest 3 published testimonials from the database
+        $testimonials = Testimonial::where('published', 1)
+                                   ->latest()
+                                   ->take(3)
+                                   ->get();
+    dd($testimonials);
+        return view('home_page', compact('testimonials'));
     }
 }

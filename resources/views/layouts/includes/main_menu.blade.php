@@ -46,9 +46,9 @@
                                 data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
 
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                                <li><a class="dropdown-item" href="contact.html">Contact Us</a></li>
-                                <li><a class="dropdown-item" href="testimonials.html">Our Client Says</a></li>
-                                <li><a class="dropdown-item" href="topics-listing.html">Topics Listing</a></li>
+                                <li><a class="dropdown-item" href="{{ route('contact.viewContact') }}">Contact Us</a></li>
+                                <li><a class="dropdown-item" href="{{ route('ourclients.viewOurClients') }}">Our Client Says</a></li>
+                                <li><a class="dropdown-item" href="{{ route('topiclist.viewTopicList') }}">Topics Listing</a></li>
                                 
                             </ul>
                         </li>

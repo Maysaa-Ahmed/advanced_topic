@@ -66,57 +66,25 @@ https://templatemo.com/tm-590-topic-listing
                     </div>
                     <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <div class="row mx-md-5">
-                                    <div class="col-md-4 testimonials">
-                                        <img class="d-block rounded-3"
-                                            src="images/testimonials/janis-dzenis-jkvE9uJN3jk-unsplash.jpg"
-                                            alt="First slide">
-                                    </div>
-                                    <div class="col-md-8 px-md-5 d-flex flex-column justify-content-center">
-                                        <h3>Jone Due<br><strong class="date">12/02/2019</strong></h3>
-                                        <p class="text-muted">You guys rock! Thank you for making it painless, pleasant and most of all hassle
-                                            free! I wish I would have thought of it first. 
-                                            <br>
-                                            You guys rock! Thank you for making it painless, pleasant and most of all hassle
-                                            free! I wish I would have thought of it first.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="row mx-md-5">
-                                    <div class="col-md-4 testimonials">
-                                        <img class="d-block rounded-3"
-                                            src="images/testimonials/janis-dzenis-oPRubjbiqKI-unsplash.jpg"
-                                            alt="First slide">
-                                    </div>
-                                    <div class="col-md-8 px-md-5 d-flex flex-column justify-content-center">
-                                        <h3>Jone Due<br><strong class="date">12/02/2019</strong></h3>
-                                        <p class="text-muted">You guys rock! Thank you for making it painless, pleasant and most of all hassle
-                                            free! I wish I would have thought of it first. 
-                                            <br>
-                                            You guys rock! Thank you for making it painless, pleasant and most of all hassle
-                                            free! I wish I would have thought of it first.</p>
+
+                           @foreach($testimonials as $testimonial)
+                                <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                                    <div class="row mx-md-5">
+                                        <div class="col-md-4 testimonials">
+                                            <img class="d-block rounded-3"
+                                                src="{{ asset('assets/images/' . $testimonial->image) }}"
+                                                alt="Testimonial image">
+                                        </div>
+                                        <div class="col-md-8 px-md-5 d-flex flex-column justify-content-center">
+                                            <h3>{{ $testimonial->name }}<br>
+                                                <strong class="date">{{ \Carbon\Carbon::parse($testimonial->created_time)->format('d/m/Y') }}</strong>
+                                            </h3>
+                                            <p class="text-muted">{{ $testimonial->content }}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="row mx-md-5">
-                                    <div class="col-md-4 testimonials">
-                                        <img class="d-block rounded-3"
-                                            src="images/testimonials/rocky-xiong-UE04nFCgDUE-unsplash.jpg"
-                                            alt="First slide">
-                                    </div>
-                                    <div class="col-md-8 px-md-5 d-flex flex-column justify-content-center">
-                                        <h3>Jone Due<br><strong class="date">12/02/2019</strong></h3>
-                                        <p class="text-muted">You guys rock! Thank you for making it painless, pleasant and most of all hassle
-                                            free! I wish I would have thought of it first. 
-                                            <br>
-                                            You guys rock! Thank you for making it painless, pleasant and most of all hassle
-                                            free! I wish I would have thought of it first.</p>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
+                            
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

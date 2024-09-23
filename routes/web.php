@@ -75,6 +75,8 @@ Route::post('register', [RegisterController::class, 'register']);
 
 //Public => Index
 Route::get('homepage', [MessageController::class, 'viewHome'])->name('homepage.viewHome');
+// Route::get('homepage', [TestimonialController::class, 'getLatestTestimonials']);
+// Route::get('homepage', [TopicController::class, 'getLatestTopics']);
 
 
 

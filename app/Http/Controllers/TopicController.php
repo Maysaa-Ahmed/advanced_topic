@@ -85,14 +85,13 @@ class TopicController extends Controller
             'topic_content' => $request->topic_content,
             'published' => isset( $request->published),
             'trending' => isset( $request->trending),
-            'image' => $request->image,
+            // 'image' => $request->image,
         ];
 
         if ($request->hasFile('image')) {
-            $imageName = time() . '.' . $request->image->getClientOriginalExtension();
-            $request->image->storeAs('images', $imageName, 'public');
-            $data['image'] = $imageName;
+            $data['image'] = $this->uploadFile($request->image, 'assets/images');
         }
+
         Topic::where('id',$id)->update($data);
         return redirect()->route('topics.index');
     }
@@ -111,5 +110,16 @@ class TopicController extends Controller
     {
         $topic = Topic::findOrFail($id);
         return view('topic_details', compact('topic'));
+    }
+
+    public function getLatestTopics()
+    {
+        // Fetch the latest 2 published topics from the database
+        $topics = Topic::where('published', 1)
+                                   ->latest()
+                                   ->take(2)
+                                   ->get();
+    
+        return view('home_page', compact('topics'));
     }
 }

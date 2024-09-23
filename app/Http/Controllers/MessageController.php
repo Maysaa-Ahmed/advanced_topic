@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Message;
+use App\Models\Testimonial;
+use App\Models\Topic;
 use App\Traits\Common;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
+
 
 //use Illuminate\Mail\Message;
 
@@ -35,22 +39,41 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email',
-            'subject' => 'required|string|max:255',
-            'message' => 'required|string',
-        ]);
+        // dd($request->all());
 
+
+        $data = Validator::make(
+            $request->all(),
+            [
+                'sender' => 'required|string|max:255',
+                'email' => 'required|email',
+                'subject' => 'required|string|max:255',
+                'message' => 'required|string',
+           ]
+        );
+        
+        if ($data->fails()) {
+            return response()->json(['message' => $data->messages()], 422);
+        }
+
+
+
+        // $data = $request->validate([
+        //     'name' => 'required|string|max:255',
+        //     'email' => 'required|email',
+        //     'subject' => 'required|string|max:255',
+        //     'message' => 'required|string',
+        // ]);
+        // dd($data);
         // Store message in the database
-        $message = Message::create($data);
+        $message = Message::create($request->all());
 
         // Send email
-        Mail::send([], [], function ($mail) use ($data) {
-            $mail->to('maysaa.ahmed94@gmail.com') 
-                ->subject($data['subject'])
-                ->setBody('From: ' . $data['sender'] . '<br>Email: ' . $data['email'] . '<br>Message: ' . $data['message'], 'text/html');
-        });
+        // Mail::send([], [], function ($mail) use ($request) {
+        //     $mail->to('maysaa.ahmed94@gmail.com') 
+        //         ->subject($request->subject)
+        //         ->setBody('From: ' . $request->sender . '<br>Email: ' . $request->email . '<br>Message: ' . $request->message, 'text/html');
+        // });
 
         return redirect()->back()->with('success', 'Your message has been sent and saved.');
    
@@ -105,8 +128,19 @@ class MessageController extends Controller
     public function viewHome()
     {
         $home = Message::get();
+        // $topics = Message::latest()->take(2)->get();
+        // Fetch the latest 3 published testimonials from the database
+        $testimonials = Testimonial::where('published', 1)
+        ->latest()
+        ->take(3)
+        ->get();
 
-        return view('home_page', compact('home'));
+        $topics = Topic::where('published', 1)
+                                   ->latest()
+                                   ->take(2)
+                                   ->get();
+
+        return view('home_page', compact('home','testimonials','topics'));
     }
     public function viewTopicList()
     {
@@ -114,10 +148,13 @@ class MessageController extends Controller
 
         return view('topics-listing', compact('list'));
     }
+    //our clients page
     public function viewOurClients()
     {
         $client = Message::get();
+        $testimonials = Testimonial::where('published', true)->latest()->get();
 
-        return view('testimonials_public', compact('client'));
+        return view('testimonials_public', compact('client', 'testimonials'));
     }
+
 }

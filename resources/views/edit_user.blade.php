@@ -56,7 +56,7 @@
         <div class="form-group mb-3 row">
           <label for="" class="form-label col-md-2 fw-bold text-md-end">Active:</label>
           <div class="col-md-10">
-            <input name="active" type="checkbox" class="form-check-input" style="padding: 0.7rem;"  @checked($user->published) />
+            <input name="active" type="checkbox" class="form-check-input" style="padding: 0.7rem;"  @checked($user->active) />
           </div>
         </div>
         <div class="text-md-end">

@@ -17,19 +17,19 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ms-lg-5 me-lg-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="index.html">Home</a>
+                                <a class="nav-link" href="{{ route('homepage.viewHome') }}">Home</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="topics-listing.html">Topics Listing</a>
+                                <a class="nav-link" href="{{ route('topiclist.viewTopicList') }}">Topics Listing</a>
                             </li>
     
                             <li class="nav-item">
-                                <a class="nav-link active" href="contact.html">Contact Us</a>
+                                <a class="nav-link" href="{{ route('contact.viewContact') }}">Contact Us</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="testimonials.html">Our Client Says</a>
+                                <a class="nav-link" href="{{ route('ourclients.viewOurClients') }}">Our Client Says</a>
                             </li>
                         </ul>
 

@@ -5,6 +5,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Traits\Common;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -38,16 +39,33 @@ class UserController extends Controller
         } else {
             $isActive = false;
         }
+        $request['active'] = $isActive;
 
         $data = $request->validate([
             'first_name' => 'required|string',
             'last_name' => 'required|string',
             'user_name' => 'required|string',
-            'active' => $isActive,
+            'active' => 'boolean',
             'email' => 'required|string|email|max:255',
             'password' => 'required|string|min:8',
+            'image'=> 'required',
         ]);
 
+        // $data = Validator::make(
+        //     $request->all(),
+        //     [
+        //         'first_name' => 'required|string',
+        //         'last_name' => 'required|string',
+        //         'user_name' => 'required|string',
+        //         'active' => 'boolean',
+        //         'email' => 'required|string|email|max:255',
+        //         'password' => 'required|string|min:8',
+        //    ]
+        // );
+        
+        // if ($data->fails()) {
+        //     return response()->json(['message' => $data->messages()], 422);
+        // }
         
         $data['image'] = $this->uploadFile($request->image, 'assets/images');
 

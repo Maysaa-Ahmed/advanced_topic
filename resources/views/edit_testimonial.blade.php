@@ -49,7 +49,7 @@
           <label for="" class="form-label col-md-2 fw-bold text-md-end">Image:</label>
           <div class="col-md-10">
             <input name="image" type="file" class="form-control" style="padding: 0.7rem; margin-bottom: 10px;"  value="{{$testimonial->image}}" />
-            <img src="../../assests/images/testimonials/rocky-xiong-UE04nFCgDUE-unsplash.jpg" alt="" style="width: 10rem;">
+            <img src="{{asset('assets/images/' . $testimonial->image) }}" alt="" style="width: 10rem;">
           </div>
         </div>
         <div class="text-md-end">

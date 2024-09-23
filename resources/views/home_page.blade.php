@@ -71,27 +71,28 @@ https://templatemo.com/tm-590-topic-listing
             <div class="container">
                 <div class="row justify-content-center">
 
+                @foreach($topics as $topic)
                     <div class="col-lg-4 col-12 mb-4 mb-lg-0">
                         <div class="custom-block bg-white shadow-lg">
                             <a href="topics-detail.html">
                                 <div class="d-flex">
                                     <div>
-                                        <h5 class="mb-2">Web Design</h5>
-
-                                        <p class="mb-0">When you search for free CSS templates, you will notice that
-                                            TemplateMo is one of the best websites.</p>
+                                        <h5 class="mb-2">{{ $topic->topic_name }}</h5>
+                                        
+                                        <p class="mb-0">{{ Str::limit($topic['topic_content'], 15, '...') }}</p>
                                     </div>
 
                                     <span class="badge bg-design rounded-pill ms-auto">14</span>
                                 </div>
 
-                                <img src="../../assests/images/topics/undraw_Remote_design_team_re_urdx.png"
+                                <img src="{{asset('assets/images/' . $topic->image) }}"
                                     class="custom-block-image img-fluid" alt="">
                             </a>
                         </div>
                     </div>
+                @endforeach 
 
-                    <div class="col-lg-6 col-12">
+                    <!-- <div class="col-lg-6 col-12">
                         <div class="custom-block custom-block-overlay">
                             <div class="d-flex flex-column h-100">
                                 <img src="../../assests/images/businesswoman-using-tablet-analysis.jpg"
@@ -134,7 +135,7 @@ https://templatemo.com/tm-590-topic-listing
                                 <div class="section-overlay"></div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
             </div>
@@ -641,6 +642,8 @@ https://templatemo.com/tm-590-topic-listing
             </div>
         </section>
        
+
+        <!-- testimonials -->
         <section class="section-padding" id="section_5">
             <div class="container">
                 <div class="row">
@@ -648,59 +651,25 @@ https://templatemo.com/tm-590-topic-listing
                         <h2 class="mb-4">What Our clients Says?</h2>
                     </div>
                 </div>
+                
                 <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                    
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
+                    @foreach($testimonials as $testimonial)
+                    <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                             <div class="row mx-md-5">
                                 <div class="col-md-4 testimonials">
                                     <img class="d-block rounded-3"
-                                        src="../../assests/images/testimonials/janis-dzenis-jkvE9uJN3jk-unsplash.jpg"
+                                        src="{{asset('assets/images/' . $testimonial->image) }}"
                                         alt="First slide">
                                 </div>
                                 <div class="col-md-8 px-md-5 d-flex flex-column justify-content-center">
-                                    <h3>Jone Due<br><strong class="date">12/02/2019</strong></h3>
-                                    <p class="text-muted">You guys rock! Thank you for making it painless, pleasant and most of all hassle
-                                        free! I wish I would have thought of it first. 
-                                        <br>
-                                        You guys rock! Thank you for making it painless, pleasant and most of all hassle
-                                        free! I wish I would have thought of it first.</p>
+                                    <h3>{{ $testimonial->name }}<br><strong class="date">{{ \Carbon\Carbon::parse($testimonial->created_time)->format('d/m/Y') }}</strong></h3>
+                                    <p class="text-muted">{{ $testimonial->content }}</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="carousel-item">
-                            <div class="row mx-md-5">
-                                <div class="col-md-4 testimonials">
-                                    <img class="d-block rounded-3"
-                                        src="../../assests/images/testimonials/janis-dzenis-oPRubjbiqKI-unsplash.jpg"
-                                        alt="First slide">
-                                </div>
-                                <div class="col-md-8 px-md-5 d-flex flex-column justify-content-center">
-                                    <h3>Jone Due<br><strong class="date">12/02/2019</strong></h3>
-                                    <p class="text-muted">You guys rock! Thank you for making it painless, pleasant and most of all hassle
-                                        free! I wish I would have thought of it first. 
-                                        <br>
-                                        You guys rock! Thank you for making it painless, pleasant and most of all hassle
-                                        free! I wish I would have thought of it first.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="row mx-md-5">
-                                <div class="col-md-4 testimonials">
-                                    <img class="d-block rounded-3"
-                                        src="../../assests/images/testimonials/rocky-xiong-UE04nFCgDUE-unsplash.jpg"
-                                        alt="First slide">
-                                </div>
-                                <div class="col-md-8 px-md-5 d-flex flex-column justify-content-center">
-                                    <h3>Jone Due<br><strong class="date">12/02/2019</strong></h3>
-                                    <p class="text-muted">You guys rock! Thank you for making it painless, pleasant and most of all hassle
-                                        free! I wish I would have thought of it first. 
-                                        <br>
-                                        You guys rock! Thank you for making it painless, pleasant and most of all hassle
-                                        free! I wish I would have thought of it first.</p>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -710,7 +679,9 @@ https://templatemo.com/tm-590-topic-listing
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                       </button>
-                </div>
+                         
+                    </div>
+                
             </div>
         </section>
 
