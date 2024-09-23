@@ -142,11 +142,13 @@ class MessageController extends Controller
 
         return view('home_page', compact('home','testimonials','topics'));
     }
+    //topic listing page
     public function viewTopicList()
     {
         $list = Message::get();
-
-        return view('topics-listing', compact('list'));
+        $topics = Topic::where('published', true)->latest()->take(3)->get();
+        $topics2 = Topic::where('published', true)->latest()->take(2)->get();
+        return view('topics-listing', compact('list', 'topics', 'topics2'));
     }
     //our clients page
     public function viewOurClients()
