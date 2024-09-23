@@ -23,7 +23,7 @@
         <div class="mx-2">
             <div class="row justify-content-between mb-2 pb-2">
                 <h2 class="fw-bold fs-2 col-auto">All Topics</h2>
-                <a href="add_topic.html" class="btn btn-link  link-dark fw-semibold col-auto me-3">➕Add new topic</a>
+                <a href="{{ route('topics.create') }}" class="btn btn-link  link-dark fw-semibold col-auto me-3">➕Add new topic</a>
             </div>
             <div class="table-responsive">
                 <table class="table table-hover display" id="_table">
@@ -45,7 +45,7 @@
                             <th scope="row">{{ \Carbon\Carbon::parse($topic['created_time'])->format('d M Y') }}</th>
                             <td><a class="text-decoration-none text-dark" href="{{ route('topic.detail', $topic['id']) }}">{{$topic['topic_name']}}</a>
                             </td>
-                            <td>{{$topic['topic_category']}}</td>
+                            <td>{{ $topic->category->category_name }}</td>
                             <td>{{ Str::limit($topic['topic_content'], 20, '...') }}</td>
                             <td>{{ $topic['published'] ? 'Yes' : 'No' }}</td>
                             <td>{{ $topic['trending'] ? 'Yes' : 'No' }}</td>

@@ -35,11 +35,11 @@
         <div class="form-group mb-3 row">
           <label for="" class="form-label col-md-2 fw-bold text-md-end">Category:</label>
           <div class="col-md-10">
-            <!-- <select name="" id="" class="form-control py-1">
-              <option value="">Computer Science</option>
-              <option value="" selected>Public Relations</option>
-            </select> -->
-            <input name="topic_category" type="text" placeholder="e.g. Design Patterns" class="form-control py-2" value="{{$topic->topic_category}}" />
+          <select name="category_id" id="" class="form-control py-1">
+            @foreach($categories as $category)
+               <option value="{{ $category->id}}" @if($category->id == $topic->category_id) selected @endif >{{ $category->category_name}}</option>
+            @endforeach
+            </select>
           </div>
         </div>
         <div class="form-group mb-3 row">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Topic;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Traits\Common;
 
@@ -23,7 +24,8 @@ class TopicController extends Controller
      */
     public function create()
     {
-        return view('add_topic');
+       $categories = Category::get();
+        return view('add_topic', compact('categories'));
     }
 
     /**
@@ -45,7 +47,7 @@ class TopicController extends Controller
 
         $data = [
             'topic_name' => $request->topic_name,
-            'topic_category' => $request->topic_category,
+            'category_id' => $request->category_id,
             'topic_content' => $request->topic_content,
             'trending' => $trend,
             'published' => $pub,
@@ -71,7 +73,9 @@ class TopicController extends Controller
     public function edit(string $id)
     {
         $topic = Topic::findOrFail($id);
-        return view('edit_topic', compact('topic'));
+        $categories = Category::get();
+        
+        return view('edit_topic', compact('topic', 'categories'));
     }
 
     /**
@@ -81,7 +85,7 @@ class TopicController extends Controller
     {
         $data = [
             'topic_name' => $request->topic_name,
-            'topic_category' => $request->topic_category,
+            'category_id' => $request->category_id,
             'topic_content' => $request->topic_content,
             'published' => isset( $request->published),
             'trending' => isset( $request->trending),

@@ -37,12 +37,12 @@
         <div class="form-group mb-3 row">
           <label for="" class="form-label col-md-2 fw-bold text-md-end">Category:</label>
           <div class="col-md-10">
-            <!-- <select name="topic_category" id="" class="form-control py-1">
-              <option value="">Select category</option>
-              <option value="">Computer Science</option>
-              <option value="">Public Relations</option>
-            </select> -->
-            <input name="topic_category" type="text" placeholder="e.g. Design Patterns" class="form-control py-2" />
+            <select name="category_id" id="" class="form-control py-1">
+            @foreach($categories as $category)
+               <option value="{{ $category->id}}">{{ $category->category_name}}</option>
+            @endforeach
+            </select>
+            <!-- <input name="topic_category" type="text" placeholder="e.g. Design Patterns" class="form-control py-2" /> -->
 
           </div>
         </div>

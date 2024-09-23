@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->timestamp('created_time')->useCurrent();
             $table->string('topic_name');
-            $table->string('topic_category');
+            // $table->string('topic_category');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->text('topic_content');
             $table->boolean('published');
             $table->boolean('trending');
